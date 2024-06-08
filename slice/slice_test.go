@@ -6,22 +6,22 @@ import (
 	"testing"
 )
 
-func TestMakeRandomInts(t *testing.T) {
+func TestRandom(t *testing.T) {
 	tests := []struct {
-		name     string
-		numItems int
-		max      int
+		name   string
+		length int
+		max    int
 	}{
-		{name: "one", numItems: 6, max: 10},
-		{name: "two", numItems: 88, max: 300},
-		{name: "three", numItems: 51, max: 10000},
+		{name: "one", length: 6, max: 10},
+		{name: "two", length: 88, max: 300},
+		{name: "three", length: 51, max: 10000},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := slice.MakeRandom(tt.numItems, tt.max)
+			got := slice.Random(tt.length, tt.max)
 			length := len(got)
-			if length != tt.numItems {
-				t.Errorf("MakeRandom() contains %v items, want %v", length, tt.numItems)
+			if length != tt.length {
+				t.Errorf("Random() contains %v items, want %v", length, tt.length)
 			}
 
 			first := -1
@@ -36,12 +36,12 @@ func TestMakeRandomInts(t *testing.T) {
 				}
 
 				if v > tt.max {
-					t.Errorf("MakeRandom() value %v exceeds max %v", v, tt.max)
+					t.Errorf("Random() value %v exceeds max %v", v, tt.max)
 				}
 			}
 
-			if duplicate == tt.numItems {
-				t.Errorf("MakeRandom() contains only the same int: %v", got)
+			if duplicate == tt.length {
+				t.Errorf("Random() contains only the same int: %v", got)
 			}
 		})
 	}
@@ -71,7 +71,6 @@ func TestIsSorted(t *testing.T) {
 func TestPop(t *testing.T) {
 	tests := []struct {
 		name  string
-		slice []int
 		index int
 		want  []int
 	}{

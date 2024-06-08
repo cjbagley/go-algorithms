@@ -4,21 +4,21 @@ import (
 	"math/rand"
 )
 
-func MakeRandom(numItems, max int) []int {
-	s := make([]int, numItems)
-	for i := 0; i < numItems; i++ {
+func Random(length, max int) []int {
+	s := make([]int, length)
+	for i := 0; i < length; i++ {
 		s[i] = rand.Intn(max)
 	}
 	return s
 }
 
-func IsSorted(slice []int) bool {
-	if len(slice) == 0 {
+func IsSorted(s []int) bool {
+	if len(s) == 0 {
 		return true
 	}
 
-	for i := 1; i < len(slice); i++ {
-		if slice[i-1] > slice[i] {
+	for i := 1; i < len(s); i++ {
+		if s[i-1] > s[i] {
 			return false
 		}
 	}
@@ -26,24 +26,24 @@ func IsSorted(slice []int) bool {
 	return true
 }
 
-func Pop(slice []int, index int) []int {
-	length := len(slice)
+func Pop(s []int, index int) []int {
+	length := len(s)
 	if length == 0 {
-		return slice
+		return s
 	}
 
 	if index > length || index < 0 {
-		return slice
+		return s
 	}
 
-	return append(slice[:index], slice[index+1:]...)
+	return append(s[:index], s[index+1:]...)
 }
 
-func GetLowest(slice []int) (lowestIndex int) {
-	lowestValue := slice[0]
-	for i := 1; i < len(slice); i++ {
-		if slice[i] < lowestValue {
-			lowestValue = slice[i]
+func GetLowest(s []int) (lowestIndex int) {
+	lowestValue := s[0]
+	for i := 1; i < len(s); i++ {
+		if s[i] < lowestValue {
+			lowestValue = s[i]
 			lowestIndex = i
 		}
 	}
