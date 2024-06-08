@@ -13,15 +13,6 @@ func MakeRandomInts(numItems, max int) []int {
 	return s
 }
 
-func Print(slice []int, items int) {
-	if len(slice) <= items {
-		fmt.Println(slice)
-		return
-	}
-
-	fmt.Println(slice[:items])
-}
-
 func IsSorted(slice []int) bool {
 	if len(slice) == 0 {
 		return true
